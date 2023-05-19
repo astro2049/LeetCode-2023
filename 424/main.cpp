@@ -10,6 +10,33 @@ int main() {
 
 class Solution {
 public:
+    int characterReplacement(string s, int k) {
+        int h[26] = {0};
+        int maxFreq;
+        int maxLen = 0;
+        h[s[0] - 'A']++;
+        maxFreq = 1;
+        for (int i = 0, j = 0;;) {
+            int len = j - i + 1;
+            if (len - maxFreq <= k) {
+                maxLen = max(maxLen, len);
+                j++;
+                if (j == s.length()) {
+                    break;
+                }
+                h[s[j] - 'A']++;
+                maxFreq = max(maxFreq, h[s[j] - 'A']);
+            } else {
+                h[s[i] - 'A']--;
+                i++;
+            }
+        }
+        return maxLen;
+    }
+};
+
+class Solution1 {
+public:
     vector<int> m = vector<int>(26);
 
     int characterReplacement(string s, int k) {
