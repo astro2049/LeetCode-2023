@@ -18,6 +18,24 @@ public:
         if (!head) {
             return false;
         }
+        ListNode *s = head, *f = head;
+        while (f && f->next) {
+            s = s->next;
+            f = f->next->next;
+            if (s == f) {
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
+class Solution1 {
+public:
+    bool hasCycle(ListNode *head) {
+        if (!head) {
+            return false;
+        }
         ListNode *s = head, *f = head->next;
         while (f && f->next) {
             if (s == f) {
