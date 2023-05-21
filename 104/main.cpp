@@ -26,6 +26,27 @@ public:
     int maxD = 0;
 
     int maxDepth(TreeNode *root) {
+        traverse(root, 0);
+        return maxD;
+    }
+
+    void traverse(TreeNode *n, int d) {
+        if (!n) {
+            maxD = max(maxD, d);
+            return;
+        }
+        d++;
+        traverse(n->left, d);
+        traverse(n->right, d);
+    }
+};
+
+
+class Solution1 {
+public:
+    int maxD = 0;
+
+    int maxDepth(TreeNode *root) {
         preorder(root, 0);
         return maxD;
     }
