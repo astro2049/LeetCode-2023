@@ -24,6 +24,28 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode *invertTree(TreeNode *root) {
+        if (!root) {
+            return root;
+        }
+        invert(root);
+        return root;
+    }
+
+    void invert(TreeNode *n) {
+        if (!n) {
+            return;
+        }
+        TreeNode *l = n->left;
+        n->left = n->right;
+        n->right = l;
+        invert(n->left);
+        invert(n->right);
+    }
+};
+
+class Solution1 {
+public:
+    TreeNode *invertTree(TreeNode *root) {
         traverse(root);
         return root;
     }
