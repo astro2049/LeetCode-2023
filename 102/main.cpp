@@ -27,6 +27,35 @@ public:
         if (!root) {
             return {};
         }
+        vector<vector<int>> levels;
+        queue<TreeNode *> q;
+        q.push(root);
+        while (!q.empty()) {
+            int count = q.size();
+            vector<int> level;
+            for (int i = 0; i < count; i++) {
+                TreeNode *c = q.front();
+                q.pop();
+                level.push_back(c->val);
+                if (c->left) {
+                    q.push(c->left);
+                }
+                if (c->right) {
+                    q.push(c->right);
+                }
+            }
+            levels.push_back(level);
+        }
+        return levels;
+    }
+};
+
+class Solution1 {
+public:
+    vector<vector<int>> levelOrder(TreeNode *root) {
+        if (!root) {
+            return {};
+        }
         vector<vector<int>> a;
         queue<TreeNode *> level;
         level.push(root);
