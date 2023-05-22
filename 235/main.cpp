@@ -21,6 +21,19 @@ struct TreeNode {
 
 class Solution {
 public:
+    TreeNode *lowestCommonAncestor(TreeNode *n, TreeNode *p, TreeNode *q) {
+        if (n->val < p->val && n->val < q->val) {
+            return lowestCommonAncestor(n->right, p, q);
+        } else if (n->val > p->val && n->val > q->val) {
+            return lowestCommonAncestor(n->left, p, q);
+        } else {
+            return n;
+        }
+    }
+};
+
+class Solution1 {
+public:
     TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
         return find(root, p, q);
     }
