@@ -22,6 +22,22 @@ struct TreeNode {
 class Solution {
 public:
     bool isValidBST(TreeNode *root) {
+        return traverse(root, LONG_LONG_MIN, LONG_LONG_MAX);
+    }
+
+    bool traverse(TreeNode *n, long long min, long long max) {
+        if (!n) {
+            return true;
+        }
+        return (n->val > min && n->val < max)
+               && traverse(n->left, min, n->val)
+               && traverse(n->right, n->val, max);
+    }
+};
+
+class Solution1 {
+public:
+    bool isValidBST(TreeNode *root) {
         return validate(root, LONG_LONG_MIN, LONG_LONG_MAX);
     }
 
