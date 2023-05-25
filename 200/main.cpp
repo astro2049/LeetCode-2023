@@ -11,6 +11,40 @@ int main() {
 
 class Solution {
 public:
+    vector<vector<char>> grid;
+    int m, n;
+    vector<vector<bool>> visited;
+
+    int numIslands(vector<vector<char>> &grid) {
+        this->grid = grid;
+        m = grid.size(), n = grid[0].size();
+        visited = vector<vector<bool>>(m, vector<bool>(n));
+        int count = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (!visited[i][j] && grid[i][j] == '1') {
+                    count++;
+                    dfs(i, j);
+                }
+            }
+        }
+        return count;
+    }
+
+    void dfs(int r, int c) {
+        if (r < 0 || r == m || c < 0 || c == n || grid[r][c] == '0' || visited[r][c]) {
+            return;
+        }
+        visited[r][c] = true;
+        dfs(r - 1, c);
+        dfs(r + 1, c);
+        dfs(r, c - 1);
+        dfs(r, c + 1);
+    }
+};
+
+class Solution1 {
+public:
     int m, n;
     vector<vector<bool>> visited;
     int num = 0;
