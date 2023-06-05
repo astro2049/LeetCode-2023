@@ -15,6 +15,26 @@ public:
     bool isIsomorphic(string s, string t) {
         unordered_map<char, char> m;
         unordered_set<char> set;
+        for (int i = 0; i < s.length(); i++) {
+            char a = s[i], b = t[i];
+            if (m.find(a) == m.end() && set.find(b) == set.end()) {
+                m[a] = b;
+                set.insert(b);
+            } else if (m.find(a) != m.end() && m[a] == b) {
+                continue;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+class Solution1 {
+public:
+    bool isIsomorphic(string s, string t) {
+        unordered_map<char, char> m;
+        unordered_set<char> set;
         if (s.length() != t.length()) {
             return false;
         }
