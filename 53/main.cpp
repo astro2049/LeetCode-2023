@@ -10,7 +10,22 @@ int main() {
 
 class Solution {
 public:
-    int maxSubArray(vector<int>& nums) {
+    int maxSubArray(vector<int> &nums) {
+        int maxSum = INT_MIN, sum = 0;
+        for (int num: nums) {
+            sum += num;
+            maxSum = max(maxSum, sum);
+            if (sum < 0) {
+                sum = 0;
+            }
+        }
+        return maxSum;
+    }
+};
+
+class Solution1 {
+public:
+    int maxSubArray(vector<int> &nums) {
         int maxSum = nums[0];
         int sum = 0;
         for (int n: nums) {
