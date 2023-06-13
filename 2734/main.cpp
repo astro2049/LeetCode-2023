@@ -10,6 +10,37 @@ int main() {
 class Solution {
 public:
     string smallestString(string s) {
+        int i = 0;
+        for (; i < s.length(); i++) {
+            if (s[i] != 'a') {
+                break;
+            }
+        }
+        bool operated = false;
+        if (i < s.length()) {
+            for (int j = i; j < s.length(); j++) {
+                if (s[j] != 'a') {
+                    operated = true;
+                    s[j]--;
+                } else {
+                    break;
+                }
+            }
+        }
+        if (!operated) {
+            if (s.back() == 'a') {
+                s.back() = 'z';
+            } else {
+                s.back()--;
+            }
+        }
+        return s;
+    }
+};
+
+class Solution1 {
+public:
+    string smallestString(string s) {
         int l = 0, r = 1;
         bool foundL = false;
         for (; l < s.length() && r < s.length();) {
